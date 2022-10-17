@@ -1,0 +1,193 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.23566682678284415 0.9624545151353557 0.1346939235811038 1.024656707108872
+  position 1.0179304681859092 0.3754785382278866 0.555701885990558
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.0471986 1.66533e-16 0.00734079
+  floorSize 2 2
+}
+Solid {
+  translation -0.467802 0.15 -0.50025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.25 1 1
+        roughness 0.5
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.15
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject Sphere {
+    radius 0.15
+    subdivision 2
+  }
+  physics Physics {
+  }
+}
+Robot {
+  translation -0.0358398 -2.22045e-16 -0.0484307
+  children [
+    DEF Front_sensor DistanceSensor {
+      translation 0.09 0.03 0.01
+      children [
+        Shape {
+          geometry Box {
+            size 0.01 0.01 0.03
+          }
+        }
+      ]
+      name "front_sensor"
+    }
+    DEF Rght_sensor DistanceSensor {
+      translation 0.0463398 0.03 0.0763398
+      rotation 0 1 0 -1.047195307179586
+      children [
+        Shape {
+          geometry Box {
+            size 0.01 0.01 0.03
+          }
+        }
+      ]
+      name "right_sensor"
+    }
+    DEF Left_sensor DistanceSensor {
+      translation 0.0419595 0.03 -0.081243
+      rotation 0 1 0 1.0472
+      children [
+        Shape {
+          geometry Box {
+            size 0.01 0.01 0.03
+          }
+        }
+      ]
+      name "left_sensor"
+    }
+    DEF BALL_1 Solid {
+      translation -0.1 -0.03 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry DEF STEEL_BALL Sphere {
+            radius 0.008
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject USE STEEL_BALL
+      physics Physics {
+      }
+    }
+    DEF BALL_2 Solid {
+      translation 0.1 -0.03 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry DEF STEEL_BALL Sphere {
+            radius 0.008
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE STEEL_BALL
+      physics Physics {
+      }
+    }
+    DEF WHEEL_L HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "MOTOR_L"
+        }
+      ]
+      endPoint Solid {
+        translation -3.55385e-12 7.06745e-06 0.107
+        rotation 1 -2.22718077307519e-13 2.225826976455669e-13 1.5707991236411336
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.2 0.2 1
+              roughness 0.8
+              metalness 0
+            }
+            geometry DEF WHEEL Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL_R HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "MOTOR_R"
+        }
+      ]
+      endPoint Solid {
+        translation 1.08534e-12 6.92119e-06 -0.107
+        rotation 0.9999999999999999 -6.732515926930035e-14 6.810619087111303e-14 1.570800876358913
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.2 0.2 1
+              roughness 0.8
+              metalness 0
+            }
+            geometry DEF WHEEL Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "D:/Photos/Wallpapers/halo-banner - Copy.jpg"
+          ]
+        }
+        roughness 0.5
+      }
+      geometry DEF CHASE Cylinder {
+        height 0.05
+        radius 0.1
+      }
+    }
+  ]
+  boundingObject USE CHASE
+  physics Physics {
+  }
+  controller "my_controller_robot"
+}
+Table {
+  translation -0.160191 0 0.580148
+  size 0.5 0.2 0.5
+}

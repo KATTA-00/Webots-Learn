@@ -1,0 +1,70 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.40373519427865184 0.8984736083231121 0.17246178720988103 0.850866039199298
+  position 1.3560930100791193 0.6506168306337247 1.3949728852857464
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 -0.61 0
+  floorSize 5 5
+}
+Robot {
+  translation 0 -0.49 0
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        DEF MOTOR_1 RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.16 0.279999
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.5
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject Shape {
+          appearance PBRAppearance {
+          }
+          geometry Cylinder {
+            height 0.5
+            radius 0.03
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    Solid {
+      children [
+        DEF box Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.2 0.2 0.2
+          }
+        }
+      ]
+      boundingObject USE box
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject USE box
+  controller "Link_Controller"
+}

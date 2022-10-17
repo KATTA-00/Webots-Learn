@@ -1,0 +1,134 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.09521077090102233 -0.9841189736318421 -0.14981573629710188 4.300596801056313
+  position 7.390597413276477 2.5962153212735353 -3.167135394856853
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  name "Arean"
+  floorSize 10 10
+  wallThickness 0.1
+  wallHeight 0.4
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+  }
+}
+Robot {
+  translation 3.39 0 0
+  scale 0.5 0.5 0.5
+  children [
+    Solid {
+      translation -0.075 -0.02 0
+      children [
+        DEF CAST Shape {
+          appearance PBRAppearance {
+          }
+          geometry Sphere {
+            radius 0.018
+            subdivision 5
+          }
+        }
+      ]
+      name "Caster"
+      boundingObject USE CAST
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.075 -0.02 0
+      children [
+        DEF CAST Shape {
+          appearance PBRAppearance {
+          }
+          geometry Sphere {
+            radius 0.018
+            subdivision 5
+          }
+        }
+      ]
+      name "Caster(1)"
+      boundingObject USE CAST
+      physics Physics {
+      }
+    }
+    DEF WHEEL_L HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "MOTOR_L"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.061
+        rotation 1 -1.1775693597892562e-16 -7.85046239859504e-17 1.5707963000000003
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 0.9
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL_R HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "MOTOR_R"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 -0.061
+        rotation 1 -1.1775693597892562e-16 -7.85046239859504e-17 1.5707963000000003
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 0.9
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF ROBOT_CHASSY Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.2 0.04 0.1
+      }
+    }
+  ]
+  name "ROBO"
+  boundingObject USE ROBOT_CHASSY
+  physics Physics {
+  }
+  controller "Path_Controller"
+}
